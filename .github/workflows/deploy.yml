@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "index.html"
+      - /.github/workflows/
     branches:
       - main 
 
