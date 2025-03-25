@@ -1,1 +1,17 @@
+version: '3'
+services:
+  frontend_js:
+    image: ${DOCKER_USERNAME}/frontend_js:latest
+    ports:
+      - 3001:3001
+    depends_on:
+      - "backend_js"
+    env_file:
+      - .env
 
+  backend_js:
+    image: ${DOCKER_USERNAME}/backend_js:latest
+    ports:
+      - 3000:3000
+    env_file:
+      - .env  
