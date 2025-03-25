@@ -50,9 +50,31 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+
+            # Set project directory
+            PROJECT_DIR="/home/ubuntu/usr/src/app"
+      
+            # Check if project folder exists, if not, create it
+            if [ ! -d "$PROJECT_DIR" ]; then
+              echo "Project folder not found. Creating..."
+              mkdir -p $PROJECT_DIR
+            else
+              echo "Project folder exists."
+            fi
+      
+            # Move into the project directory
+            cd $PROJECT_DIR
+      
+            # Ensure docker-compose.yaml exists, if not, fetch from GitHub
+            if [ ! -f "docker-compose.yaml" ]; then
+              echo "docker-compose.yml not found. Downloading from GitHub..."
+              curl -o docker-compose.yml https://raw.githubusercontent.com/kpt005/ImportFromLab3/main/docker-compose.yaml
+            else
+              echo "docker-compose.yaml already exists."
+            fi
             
             # Stop and remove existing containers
-            docker-compose down
+            docker-compose down || true
             
             docker pull $DOCKER_USERNAME/frontend_js:latest
             docker pull $DOCKER_USERNAME/backend_js:latest
