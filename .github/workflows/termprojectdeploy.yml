@@ -27,14 +27,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Frontend Image
-        if: contains(github.event.head_commit.modified, 'termproject/Front end/')
         run: |
           docker build -t $IMAGE_FRONTEND:${{ github.sha }} -t $IMAGE_FRONTEND:latest -f "termproject/Front end/Dockerfile" "Front end"
           docker push $IMAGE_FRONTEND:${{ github.sha }}
           docker push $IMAGE_FRONTEND:latest
 
       - name: Build and Push Backend Image
-        if: contains(github.event.head_commit.modified, 'termproject/Back end/')
         run: |
           docker build -t $IMAGE_BACKEND:${{ github.sha }} -t $IMAGE_BACKEND:latest -f "termproject/Back end/Dockerfile" "Back end"
           docker push $IMAGE_BACKEND:${{ github.sha }}
