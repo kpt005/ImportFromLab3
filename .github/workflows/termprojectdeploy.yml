@@ -50,6 +50,10 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+            
+            # Stop and remove existing containers
+            docker-compose down
+            
             docker pull $DOCKER_USERNAME/frontend_js:latest
             docker pull $DOCKER_USERNAME/backend_js:latest
             docker-compose up -d
