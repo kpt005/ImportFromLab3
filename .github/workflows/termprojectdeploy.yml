@@ -28,13 +28,13 @@ jobs:
 
       - name: Build and Push Frontend Image
         run: |
-          docker build -t $IMAGE_FRONTEND:${{ github.sha }} -t $IMAGE_FRONTEND:latest -f "termproject/Front end/Dockerfile" "Front end"
+          docker build -t $IMAGE_FRONTEND:${{ github.sha }} -t $IMAGE_FRONTEND:latest -f "termproject/Front end/Dockerfile" "termproject/Front end"
           docker push $IMAGE_FRONTEND:${{ github.sha }}
           docker push $IMAGE_FRONTEND:latest
 
       - name: Build and Push Backend Image
         run: |
-          docker build -t $IMAGE_BACKEND:${{ github.sha }} -t $IMAGE_BACKEND:latest -f "termproject/Back end/Dockerfile" "Back end"
+          docker build -t $IMAGE_BACKEND:${{ github.sha }} -t $IMAGE_BACKEND:latest -f "termproject/Back end/Dockerfile" "termproject/Back end"
           docker push $IMAGE_BACKEND:${{ github.sha }}
           docker push $IMAGE_BACKEND:latest
 
