@@ -74,7 +74,7 @@ jobs:
             fi
             
             # Stop and remove existing containers
-            docker-compose down
+            docker-compose down || true
             
             docker pull $DOCKER_USERNAME/frontend_js:latest
             docker pull $DOCKER_USERNAME/backend_js:latest
