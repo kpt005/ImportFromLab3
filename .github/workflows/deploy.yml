@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
   
     - name: Build and Push Docker image 
-      uses: docker/build-push-action@v2 
+      uses: docker/login-action@v2 
       with: 
         context: .
         push: true 
@@ -35,5 +35,5 @@ jobs:
         script: | 
           docker stop webapp || true 
           docker rm webapp || true 
-          docker pull s{{ secrets.DOCKER_USERNAME }}/webapp:${{ github.sha }}
+          docker pull ${{ secrets.DOCKER_USERNAME }}/webapp:${{ github.sha }}
           docker run -d --name webapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/webapp:${{ github.sha }}
