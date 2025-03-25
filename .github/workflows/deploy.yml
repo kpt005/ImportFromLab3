@@ -29,11 +29,11 @@ jobs:
     - name: Deploy to EC2 instance 
       uses: appleboy/ssh-action@master 
       with: 
-        host: ${{ secrets. EC2_HOST}} 
+        host: ${{ secrets.EC2_HOST}} 
         username: ${{ secrets.EC2_USERNAME}} 
         key: ${{ secrets.EC2_PRIVATE_KEY}}
         script: | 
           docker stop webapp || true 
           docker rm webapp || true 
-          docker pull s{{ secrets.DOCKER USERNAME}}/webapp: ${{ github.sha}}
-          docker run-d-name webapp -p 80:80 ${{ secrets.DOCKER_USERNAME}/webapp:${{ github.sha }}
+          docker pull s{{ secrets.DOCKER_USERNAME}}/webapp:${{ github.sha}}
+          docker run-d --name webapp -p 80:80 ${{ secrets.DOCKER_USERNAME}}/webapp:${{ github.sha }}
