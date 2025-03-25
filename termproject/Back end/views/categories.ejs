@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/orders">Orders</a></li>
+            <li><a href="/productmanagement">Products</a></li>
+            <li><a href="/categories" class="active">Categories</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h2>Manage Categories</h2>
+        
+        <!-- 添加分类表单 -->
+        <form action="/categories/add" method="POST">
+            <input type="text" name="category_name" placeholder="New Category" required>
+            <button type="submit" class="add-btn">Add Category</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 循环输出 categories 数据 -->
+                <% categories.forEach(cat => { %>
+                <tr>
+                    <td><%= cat.category_id %></td>
+                    <td><%= cat.category_name %></td>
+                    <td>
+                        <!-- 编辑(内联表单) -->
+                        <form action="/categories/edit" method="POST" style="display:inline-block;">
+                            <input type="hidden" name="category_id" value="<%= cat.category_id %>">
+                            <input type="text" name="category_name" value="<%= cat.category_name %>">
+                            <button type="submit">Update</button>
+                        </form>
+                        <!-- 删除分类 -->
+                        <a href="/categories/delete/<%= cat.category_id %>" onclick="return confirm('Are you sure?')">
+                            <button class="delete-btn">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+body {
+    background-color: #FFFFFF; /* เปลี่ยนพื้นหลังเป็นขาว */
+    color: #000000; /* ข้อความเป็นสีดำ */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: #E0E0E0;
+    color: black;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #888888;
+}
+
+.extra-links a {
+    color: #555555;
+    text-decoration: none;
+    font-size: 12px;
+}

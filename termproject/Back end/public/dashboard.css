@@ -1,0 +1,175 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #FFFFFF;
+    color: black;
+}
+
+/* Layout */
+.container {
+    display: flex; /* ให้ Sidebar & Main Content อยู่ในแถวเดียวกัน */
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    background: #F5F5F5;
+    padding: 20px;
+    height: 100vh;
+    position: fixed; /* ทำให้ sidebar คงที่ */
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    background: #E0E0E0;
+    border-radius: 5px;
+}
+
+.sidebar ul li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+/* Main Content */
+.main-content {
+    width: 80%;
+    padding: 20px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Dashboard Box */
+.dashboard-box {
+    background: #F5F5F5;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #E0E0E0;
+    padding: 20px;
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #CCCCCC;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Order Status Colors */
+.shipped {
+    color: green;
+    font-weight: bold;
+}
+
+.pending {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Orders & Categories Page Styles */
+#orders, #categories {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto 0 auto; /* ปรับตำแหน่งให้อยู่สูงขึ้น */
+    background: #FFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #F5F5F5;
+}
+
+/* Button */
+button {
+    padding: 8px 12px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Form */
+form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

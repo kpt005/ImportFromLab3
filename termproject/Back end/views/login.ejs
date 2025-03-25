@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Admin Panel</title>
+    <!-- 如果 style.css 放在 /public/style.css，
+         可以写成 <link rel="stylesheet" href="/style.css">
+         请确保路径正确。 -->
+    <link rel="stylesheet" href="/style.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <!-- 修改 form 的 action 指向你的登录路由(如 /login) -->
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

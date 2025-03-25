@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li><a href="/productmanagement" class="active">Products</a></li>
+                <li><a href="/categories">Categories</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Product Management</h1>
+
+            <!-- 添加产品表单 (支持图片上传) -->
+            <form action="/productmanagement/add" method="POST" enctype="multipart/form-data" style="margin-bottom: 20px;">
+                <!-- 下拉选择分类 -->
+                <label>Category:</label>
+                <select name="cat_id" required>
+                  <option value="">-- Select Category --</option>
+                  <% if (typeof categories !== 'undefined') { %>
+                    <% categories.forEach(cat => { %>
+                      <option value="<%= cat.category_id %>" <%= (currentCatId && currentCatId == cat.category_id) ? 'selected' : '' %>>
+                        <%= cat.category_name %>
+                      </option>
+                    <% }) %>
+                  <% } %>
+                </select>
+
+                <input type="text" name="product_name" placeholder="Product Name" required>
+                <input type="text" name="product_description" placeholder="Description">
+                <!-- 文件上传控件 -->
+                <input type="file" name="product_images" accept="image/*" required>
+                <input type="number" step="0.01" name="product_normal_price" placeholder="Normal Price">
+                <input type="number" step="0.01" name="product_price_promotion" placeholder="Promotion Price">
+                <button type="submit">Add Product</button>
+            </form>
+
+            <!-- 产品列表 -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Promotion Price</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(prod => { %>
+                    <tr>
+                        <td><%= prod.product_name %></td>
+                        <td><%= prod.category_name %></td>
+                        <td><%= prod.product_normal_price %></td>
+                        <td><%= prod.product_price_promotion %></td>
+                        <td>
+                            <% if(prod.product_images) { %>
+                              <img src="/uploads/<%= prod.product_images %>" alt="Product Image" style="max-width:100px;">
+                            <% } else { %>
+                              No Image
+                            <% } %>
+                        </td>
+                        <td>
+                            <!-- 编辑(内联表单) -->
+                            <form action="/productmanagement/edit" method="POST" style="display:inline-block;">
+                                <input type="hidden" name="product_id" value="<%= prod.product_id %>">
+                                <input type="hidden" name="cat_id" value="<%= prod.category_id %>">
+                                <input type="text" name="product_name" value="<%= prod.product_name %>">
+                                <input type="text" name="product_description" value="<%= prod.product_description %>">
+                                <!-- 这里暂不支持编辑图片，若需要更新图片，可集成文件上传 -->
+                                <input type="number" step="0.01" name="product_normal_price" value="<%= prod.product_normal_price %>">
+                                <input type="number" step="0.01" name="product_price_promotion" value="<%= prod.product_price_promotion %>">
+                                <button type="submit">Update</button>
+                            </form>
+                            <!-- 删除产品 -->
+                            <a href="/productmanagement/delete/<%= prod.product_id %>" onclick="return confirm('Are you sure?')">
+                                <button>Delete</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li><a href="/productmanagement">Products</a></li>
+                <li><a href="/categories">Categories</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="dashboard-box">
+                <h1>Dashboard</h1>
+                <p>Welcome, <%= adminName %></p>
+            </div>
+
+            <!-- Cards: 可选择后端传一些统计数据进来 -->
+            <div class="cards">
+                <div class="card">
+                  <h3>Total Sales</h3>
+                  <p>$<%= totalSales %></p>
+                </div>
+                <div class="card">
+                  <h3>Orders</h3>
+                  <p><%= totalOrders %></p>
+                </div>
+                <div class="card">
+                  <h3>Customers</h3>
+                  <p><%= totalCustomers %></p>
+                </div>
+              </div>
+              
+              <h2>Recent Orders</h2>
+              <table>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+                <% recentOrders.forEach(o => { %>
+                <tr>
+                  <td>#<%= o.id %></td>
+                  <td><%= o.customer_name %></td>
+                  <td>$<%= o.total_amount %></td>
+                  <td class="<%= o.status %>"><%= o.status %></td>
+                </tr>
+                <% }) %>
+              </table>
+        </div>
+    </div>
+</body>
+</html>
