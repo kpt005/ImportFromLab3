@@ -1,7 +1,9 @@
 name: Docker CI/CD Pipeline 
 
 on: 
-  push: 
+  push:
+    paths:
+      - "index.html"
     branches:
       - main 
 
