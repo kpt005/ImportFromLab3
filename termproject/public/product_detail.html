@@ -1,0 +1,98 @@
+<!-- product_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Detail - My Webstore</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Product Image -->
+        <img id="productImage" src="images/product1.jpg" class="img-fluid" alt="Product Image">
+      </div>
+      <div class="col-md-6">
+        <h2 id="productName">Product Name</h2>
+        <p id="productDescription">Detailed description of the product.</p>
+        <p id="productPrice">
+          Price: <span id="normalPrice">$120.00</span>
+          <!-- Promotion price displayed differently if available -->
+          <span id="promoPrice" class="text-danger font-weight-bold ml-2"></span>
+        </p>
+        <!-- Attributes selection (example: color and size) -->
+        <div class="form-group">
+          <label for="selectColor">Color</label>
+          <select id="selectColor" class="form-control">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="selectSize">Size</label>
+          <select id="selectSize" class="form-control">
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+          </select>
+        </div>
+        <!-- Quantity -->
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input id="quantity" type="number" class="form-control" value="1" min="1">
+        </div>
+        <button id="addToBasket" class="btn btn-primary">Add to Basket</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // For demonstration, we parse the product ID from the URL query string.
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    
+    // In a real application, fetch product details via AJAX from your database using productId.
+    // Example: update product details dynamically.
+    // document.getElementById('productName').innerText = fetchedData.product_name;
+    // document.getElementById('productDescription').innerText = fetchedData.product_description;
+    // etc.
+    
+    // Example: on "Add to Basket" button click, check if user is logged in then add item.
+    document.getElementById('addToBasket').addEventListener('click', function() {
+      // Check if the user is logged in. (This requires a server check or token validation.)
+      // If not logged in, redirect to login page.
+      // For now, we assume the user is logged in.
+      const quantity = document.getElementById('quantity').value;
+      const color = document.getElementById('selectColor').value;
+      const size = document.getElementById('selectSize').value;
+      
+      // Prepare basket data
+      const basketItem = {
+        productId: productId,
+        quantity: quantity,
+        attributes: { color: color, size: size }
+      };
+      
+      // You would send this data to your backend via AJAX to update the shopping basket.
+      alert(`Added product ${productId} (Qty: ${quantity}, Color: ${color}, Size: ${size}) to basket.`);
+    });
+  </script>
+  
+  <script>
+    // Load navbar
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
