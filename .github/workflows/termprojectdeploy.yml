@@ -50,7 +50,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
-
+            echo "the key is ${{ secrets.EC2_PRIVATE_KEY }}"
             # Set project directory
             PROJECT_DIR="/home/ubuntu/usr/src/app"
       
